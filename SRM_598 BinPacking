@@ -1,0 +1,57 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+class BinPackingEasy
+{
+    public:
+    int minBins(vector<int>item)
+    {
+        int n = item.size();
+        if(n == 1)return 1;
+        sort(item.begin(),item.end());
+        for(int i = 0;i < n;i++)
+            cout<<item[i]<<" ";
+        cout<<endl;
+        int first = 0,second = n-1,count = 0;
+        while(first <= second)
+        {
+            if(first == second)
+            {
+                count++;
+                break;
+            }
+            int sum = item[first] + item[second];
+            if(sum > 300)
+            {
+                second--;
+                count++;
+            }
+            else
+            {
+                int k = first + 1;
+                while(k < second && item[k] + sum <= 300)
+                {
+                    sum = item[k] + sum;
+                    k++;
+                }
+                first = k;
+                second--;
+                count++;
+            }
+        }
+        return count;
+    }
+};
+
+int main()
+{
+    BinPackingEasy t;
+    int arr[] = {100, 200, 100, 100, 100, 100, 200, 100, 200};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    vector<int>vec(arr,arr+n);
+    cout<<t.minBins(vec)<<endl;
+    return 0;
+}
