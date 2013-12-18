@@ -1,0 +1,37 @@
+#include<iostream>
+#include<vector>
+#include<limits.h>
+using namespace std;
+
+class ORSolitaire
+{
+    public:
+    int getMinimum(vector<int>numbers,int goal)
+    {
+        int len = numbers.size();
+        if(len <= 0)return 0;
+        vector<int>res;
+        for(int i = 0;i < len;i++)
+        {
+            int num = numbers[i];
+            if((num & goal) == num)
+                res.push_back(num);
+        }
+        int x = 0;
+        for(int i = 0;i < res.size();i++)
+            x |= res[i];
+        if(x != goal)return 0;
+        int min_to_remove = INT_MAX;
+        for(int i = 0;i < 30;i++)
+        {
+            if(((1<<i) & goal) > 0)
+            {
+                int count = 0;
+                for(int j = 0;j < res.size();j++)
+                    if((res[j] & (1 << i)) > 0)count++;
+                min_to_remove = min_to_remove < count ? min_to_remove : count;
+            }
+        }
+        return min_to_remove;
+    }
+};
