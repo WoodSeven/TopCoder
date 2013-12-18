@@ -1,0 +1,19 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+class FoxAndFencingEasy
+{
+    public:
+    string WhoCanWin(int mov1,int mov2,int d)
+    {
+        if(mov1 >= d || 2*mov2 < mov1)
+            return "Ciel";
+        else if(mov1*2 < mov2)
+            return "Liss";
+        return
+            return "Draw";
+    }
+};
