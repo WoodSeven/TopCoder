@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<set>
+using namespace std;
+
+class LittleElephantAndString
+{
+    public:
+    int getNumber(string A,string B)
+    {
+        if(multiset<char>(A.begin(),A.end()) != multiset<char>(B.begin(),B.end()))
+            return -1;
+        int len = A.size(),i = len - 1,j = len - 1;
+        for(;i >= 0;i--)
+        {
+            while((j >= 0) && (A[j] != B[i]))
+                j--;
+            if(j < 0)
+                return i+1;
+            j--;
+        }
+        return 0;        
+    }
+};
