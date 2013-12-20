@@ -1,0 +1,30 @@
+#include<iostream>
+#include<algorithm>
+#include<limits.h>
+#include<vector>
+using namespace std;
+
+class IncrementAndDoubling
+{
+    public:
+    int getMin(vector<int>desiredArray)
+    {
+        int sum = 0,mx = 1,c;
+        for(int i = 0;i < desiredArray.size();i++)
+        {
+            int num = desiredArray[i];
+            c = 0;
+            while(num)
+            {
+                c++;
+                sum += num % 2;
+                num /= 2;
+            }
+            mx = max(mx,c);
+        }
+        return (mx+sum-1);
+    }
+};
+
+/* the number of doubling operations equals the number of bits of the number minus 1 
+and the number of increment operations equals the number of '1' bits in the number.*/
