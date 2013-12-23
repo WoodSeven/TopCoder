@@ -1,0 +1,25 @@
+#include<iostream>
+#include<algorithm>
+#include<limits.h>
+#include<vector>
+using namespace std;
+
+class WinterAndMandarins
+{
+    public:
+    int getNumber(vector<int>bags,int k)
+    {
+        int len = bags.size();
+        if(len <= 1)return 0;
+        sort(bags.begin(),bags.end());
+        int first = 0,second = k - 1,difs,mi = INT_MAX;
+        while(second < len)
+        {
+            difs = bags[second] - bags[first];
+            mi = mi < difs ? mi : difs;
+            first++;
+            second++;
+        }
+        return mi;
+    }
+};
