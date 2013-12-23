@@ -1,0 +1,38 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+class WinterAndCandies
+{
+    public:
+    int getNumber(vector<int>type)
+    {
+        int len = type.size();
+        sort(type.begin(),type.end());
+        int sum = 0,num,pre;
+        for(int i = 0;i < len;i++)
+        {
+            if(i == 0 && type[i] != 1)return 0;
+            else if(i == 0 && type[i] == 1)
+            {
+                sum = 1;
+                num = 1;
+                pre = 1;
+            }
+            if(i > 0 && type[i] == type[i-1])
+            {
+                sum += num;
+                num += num;
+                continue;
+            }
+            else if(i > 0 && type[i] != type[i-1])
+            {
+                if(type[i] - pre > 1)return sum;
+                sum += num;
+                pre = type[i];
+            }
+        }
+        return sum;
+    }
+};
